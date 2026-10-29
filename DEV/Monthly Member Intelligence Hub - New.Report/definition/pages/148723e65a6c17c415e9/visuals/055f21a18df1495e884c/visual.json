@@ -1,0 +1,461 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "055f21a18df1495e884c",
+  "position": {
+    "x": 928,
+    "y": 372,
+    "z": 18000,
+    "height": 380,
+    "width": 960,
+    "tabOrder": 18000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Combine-Data dim_branch"
+                    }
+                  },
+                  "Property": "Region"
+                }
+              },
+              "queryRef": "Combine-Data dim_branch.Region",
+              "nativeQueryRef": "Region",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Combine-Data dim_branch"
+                    }
+                  },
+                  "Property": "BranchName"
+                }
+              },
+              "queryRef": "Combine-Data dim_branch.BranchName",
+              "nativeQueryRef": "BranchName",
+              "active": false,
+              "displayName": "Branch"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Combine-Data fact_monthly_kpi"
+                    }
+                  },
+                  "Property": "Avg NPS"
+                }
+              },
+              "queryRef": "Combine-Data fact_monthly_kpi.Avg NPS",
+              "nativeQueryRef": "Avg NPS",
+              "displayName": "NPS"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Combine-Data fact_monthly_kpi"
+                    }
+                  },
+                  "Property": "Delinquency %"
+                }
+              },
+              "queryRef": "Combine-Data fact_monthly_kpi.Delinquency %",
+              "nativeQueryRef": "Delinquency %",
+              "displayName": "Delinquency"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Combine-Data fact_monthly_kpi"
+                    }
+                  },
+                  "Property": "Avg Deposit Growth %"
+                }
+              },
+              "queryRef": "Combine-Data fact_monthly_kpi.Avg Deposit Growth %",
+              "nativeQueryRef": "Avg Deposit Growth %",
+              "displayName": "Deposit growth"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Combine-Data fact_monthly_kpi"
+                    }
+                  },
+                  "Property": "Digital Adoption %"
+                }
+              },
+              "queryRef": "Combine-Data fact_monthly_kpi.Digital Adoption %",
+              "nativeQueryRef": "Digital Adoption %",
+              "displayName": "Digital adoption"
+            }
+          ]
+        }
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "Combine-Data dim_branch.Region"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Combine-Data dim_branch"
+                    }
+                  },
+                  "Property": "Region"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "Combine-Data dim_branch.BranchName"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Combine-Data dim_branch"
+                    }
+                  },
+                  "Property": "BranchName"
+                }
+              }
+            ],
+            "isPinned": true
+          }
+        ],
+        "root": {}
+      }
+    ],
+    "objects": {
+      "values": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Combine-Data fact_monthly_kpi"
+                        }
+                      },
+                      "Property": "NPS Status Color"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Combine-Data fact_monthly_kpi.Avg NPS"
+          }
+        },
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Combine-Data fact_monthly_kpi"
+                        }
+                      },
+                      "Property": "Delinquency Status Color"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Combine-Data fact_monthly_kpi.Delinquency %"
+          }
+        },
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Combine-Data fact_monthly_kpi"
+                        }
+                      },
+                      "Property": "Deposit Growth Status Color"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Combine-Data fact_monthly_kpi.Avg Deposit Growth %"
+          }
+        },
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Combine-Data fact_monthly_kpi"
+                        }
+                      },
+                      "Property": "Digital Adoption Status Color"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Combine-Data fact_monthly_kpi.Digital Adoption %"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0F2A44'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segoe UI Semibold'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "rowHeaders": [
+        {
+          "properties": {
+            "showExpandCollapseButtons": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "rowPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "6D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Region to branch scorecard  (expand a region; right-click a branch to drill through)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "49ca58b1131d692108a9",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Combine-Data dim_branch"
+              }
+            },
+            "Property": "Region"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "dd8403d3757757059b39",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Combine-Data dim_branch"
+              }
+            },
+            "Property": "BranchName"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "c15a21d54193a7cdaa0b",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Combine-Data fact_monthly_kpi"
+              }
+            },
+            "Property": "Avg NPS"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "f386fa220080d4b6061c",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Combine-Data fact_monthly_kpi"
+              }
+            },
+            "Property": "Delinquency %"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "54924ae5d4ad1018c9e6",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Combine-Data fact_monthly_kpi"
+              }
+            },
+            "Property": "Avg Deposit Growth %"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "5c0fcdb307e3848770c8",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Combine-Data fact_monthly_kpi"
+              }
+            },
+            "Property": "Digital Adoption %"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

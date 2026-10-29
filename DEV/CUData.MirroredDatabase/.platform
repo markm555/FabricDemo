@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "MirroredDatabase",
+    "displayName": "CUData"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "3c1caba4-dde4-4bbb-a67b-9e1d6180935c"
+  }
+}

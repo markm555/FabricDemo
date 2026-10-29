@@ -1,0 +1,179 @@
+cultureInfo en-US
+
+	linguisticMetadata =
+			{
+			  "Version": "2.0.0",
+			  "Language": "en-US",
+			  "Entities": {
+			    "combinedata_dim_branch.branchname": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Combine-Data dim_branch",
+			          "ConceptualProperty": "BranchName"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Branch": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "combinedata_dim_branch.sourcecu": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Combine-Data dim_branch",
+			          "ConceptualProperty": "SourceCU"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Legacy credit union": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "combinedata_fact_monthly_kpi.avg_nps": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Combine-Data fact_monthly_kpi",
+			          "ConceptualProperty": "Avg NPS"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "NPS": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "combinedata_fact_monthly_kpi.delinquency_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Combine-Data fact_monthly_kpi",
+			          "ConceptualProperty": "Delinquency %"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Delinquency": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "combinedata_fact_monthly_kpi.avg_deposit_growth_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Combine-Data fact_monthly_kpi",
+			          "ConceptualProperty": "Avg Deposit Growth %"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Deposit growth": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "combinedata_fact_monthly_kpi.digital_adoption_": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Combine-Data fact_monthly_kpi",
+			          "ConceptualProperty": "Digital Adoption %"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Digital adoption": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "combinedata_fact_driver_breakdown.driver_impact": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Combine-Data fact_driver_breakdown",
+			          "ConceptualProperty": "Driver Impact"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Impact score": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "combinedata_fact_driver_breakdown.avg_driver_value": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Combine-Data fact_driver_breakdown",
+			          "ConceptualProperty": "Avg Driver Value"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Avg driver value": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    }
+			  }
+			}
+		contentType: json
+

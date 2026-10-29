@@ -1,0 +1,111 @@
+table 'Combine-Data fact_driver_breakdown'
+	lineageTag: 786a332e-64a3-4905-8236-8fe576ac4b0e
+
+	/// Total impact score of operational drivers on member outcomes. Positive helps, negative hurts.
+	measure 'Driver Impact' = SUM('Combine-Data fact_driver_breakdown'[ImpactScore])
+		formatString: 0.0
+		displayFolder: Drivers
+		lineageTag: 708ce757-3a47-4ba3-8c95-4858f781c0d0
+
+	/// Average monthly value of the operational driver.
+	measure 'Avg Driver Value' = AVERAGE ( 'Combine-Data fact_driver_breakdown'[DriverValue] )
+		formatString: #,0.0
+		displayFolder: Drivers
+		lineageTag: e244c2c3-f8a5-49e3-bedb-f1324a0c947f
+
+	/// Red for drivers hurting member outcomes, green for drivers helping.
+	measure 'Impact Bar Color' = IF ( [Driver Impact] < 0, "#C0392B", "#2E8B57" )
+		displayFolder: Formatting
+		lineageTag: bcd09b3e-e3e3-4019-be4d-7771108545f6
+
+	column SourceCU
+		dataType: string
+		lineageTag: dd5d55ec-0f1f-4a59-b8f0-c2c2c58560b5
+		summarizeBy: none
+		sourceColumn: SourceCU
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceBranchKey
+		dataType: string
+		lineageTag: b2484422-3933-4b64-8f66-664784205a6a
+		summarizeBy: none
+		sourceColumn: SourceBranchKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthStart
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: ea6a5d86-c194-45b8-81eb-5b2b5e1e1535
+		summarizeBy: none
+		sourceColumn: MonthStart
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column BranchId
+		dataType: string
+		lineageTag: a427d51b-2a19-46c9-a255-30dbe12ec55a
+		summarizeBy: none
+		sourceColumn: BranchId
+
+		annotation SummarizationSetBy = Automatic
+
+	column DriverName
+		dataType: string
+		lineageTag: 8af054f1-7edb-46a1-93b0-b7d15623798d
+		summarizeBy: none
+		sourceColumn: DriverName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ImpactScore
+		dataType: double
+		lineageTag: e8c7df33-0951-4047-874b-322979ccfbf7
+		summarizeBy: sum
+		sourceColumn: ImpactScore
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DriverValue
+		dataType: double
+		lineageTag: f0f76b63-42bd-42d3-b88f-a82bb55d7cbf
+		summarizeBy: sum
+		sourceColumn: DriverValue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Readable driver name for reports and Copilot.
+	column Driver =
+			SWITCH ( 'Combine-Data fact_driver_breakdown'[DriverName],
+			    "CrossSellRate", "Cross-sell rate",
+			    "MemberGrowth", "Member growth",
+			    "StaffingCoverage", "Staffing coverage",
+			    "LocalEconomicIndex", "Local economic index",
+			    "CallCenterWaitTime", "Call center wait time",
+			    "MobileAppStability", "Mobile app stability",
+			    'Combine-Data fact_driver_breakdown'[DriverName] )
+		dataType: string
+		lineageTag: 1646d9eb-6036-485e-bd22-08272883a437
+		summarizeBy: none
+
+	partition 'Combine-Data fact_driver_breakdown' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("7zjehgs3vbpe5chwrm3iya6iri-s23mohu63uburco6hv7o4vn7pa.datawarehouse.fabric.microsoft.com"),
+				    #"Combined-Data" = Source{[Name="Combined-Data"]}[Data],
+				    #"Combine-Data_fact_driver_breakdown" = #"Combined-Data"{[Schema="Combine-Data",Item="fact_driver_breakdown"]}[Data]
+				in
+				    #"Combine-Data_fact_driver_breakdown"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

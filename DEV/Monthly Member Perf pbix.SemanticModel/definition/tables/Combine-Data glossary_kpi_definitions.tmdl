@@ -1,0 +1,49 @@
+table 'Combine-Data glossary_kpi_definitions'
+	lineageTag: 055f5dcd-51a6-480a-a5e1-2f05f7503af8
+
+	column KPI
+		dataType: string
+		lineageTag: 5a653c89-cef3-45ec-941f-79ba13aed6c8
+		summarizeBy: none
+		sourceColumn: KPI
+
+		annotation SummarizationSetBy = Automatic
+
+	column Definition
+		dataType: string
+		lineageTag: 4dfce74f-262e-49ce-9c64-ce2d0b9165e6
+		summarizeBy: none
+		sourceColumn: Definition
+
+		annotation SummarizationSetBy = Automatic
+
+	column Owner
+		dataType: string
+		lineageTag: 1f2c4b6d-d26f-4122-a76b-dc9988fe8c95
+		summarizeBy: none
+		sourceColumn: Owner
+
+		annotation SummarizationSetBy = Automatic
+
+	column Calculation
+		dataType: string
+		lineageTag: f3fe991d-2748-44f6-8b01-95d0dd7682e0
+		summarizeBy: none
+		sourceColumn: Calculation
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Combine-Data glossary_kpi_definitions' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("7zjehgs3vbpe5chwrm3iya6iri-s23mohu63uburco6hv7o4vn7pa.datawarehouse.fabric.microsoft.com"),
+				    #"Combined-Data" = Source{[Name="Combined-Data"]}[Data],
+				    #"Combine-Data_glossary_kpi_definitions" = #"Combined-Data"{[Schema="Combine-Data",Item="glossary_kpi_definitions"]}[Data]
+				in
+				    #"Combine-Data_glossary_kpi_definitions"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

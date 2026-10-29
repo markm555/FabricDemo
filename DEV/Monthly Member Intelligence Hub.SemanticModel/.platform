@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Monthly Member Intelligence Hub"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "f4292709-b143-4382-9c89-7e2b2e1e9dc5"
+  }
+}

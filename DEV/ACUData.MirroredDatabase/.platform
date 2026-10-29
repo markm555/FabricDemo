@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "MirroredDatabase",
+    "displayName": "ACUData"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "dc23cce2-e07b-4c48-a66f-0fe8096c2754"
+  }
+}

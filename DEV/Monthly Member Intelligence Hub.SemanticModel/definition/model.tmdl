@@ -1,0 +1,26 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["Combine-Data dim_branch","Combine-Data dim_month","Combine-Data fact_driver_breakdown","Combine-Data fact_monthly_kpi","Combine-Data glossary_kpi_definitions","Combine-Data security_user_scope"]
+
+ref table 'Combine-Data dim_branch'
+ref table 'Combine-Data dim_month'
+ref table DateTableTemplate_2a29916d-ce05-46ae-8a54-726b38224e57
+ref table LocalDateTable_863c70b5-8b07-49ee-b9fa-25dd256f53d2
+ref table 'Combine-Data fact_driver_breakdown'
+ref table 'Combine-Data fact_monthly_kpi'
+ref table 'Combine-Data glossary_kpi_definitions'
+ref table 'Combine-Data security_user_scope'
+
+ref role 'Security Scope'
+
+ref cultureInfo en-US
+

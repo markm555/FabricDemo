@@ -1,0 +1,79 @@
+table Perf_Measures
+	lineageTag: d87ab4f6-e79f-479d-a607-7ba0d4ddb989
+
+	measure 'Perf Stress A' = ```
+			
+			VAR T =
+			    CROSSJOIN(
+			        ALL('Combine-Data dim_branch'[BranchName]),
+			        ALL('Combine-Data dim_month'[MonthStart]),
+			        GENERATESERIES(1, 800, 1)
+			    )
+			RETURN
+			SUMX(
+			    T,
+			    [Loans Booked] + [Avg NPS] + [Delinquency %] + [Digital Adoption %]
+			)
+			
+			```
+		lineageTag: 7d6791d0-b6ba-4d14-a764-c708017ea4b8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Perf Stress B' = ```
+			
+			VAR S =
+			    ADDCOLUMNS(
+			        SUMMARIZE(
+			            ALL('Combine-Data fact_monthly_kpi'),
+			            'Combine-Data dim_branch'[BranchName],
+			            'Combine-Data dim_month'[MonthStart]
+			        ),
+			        "Score",
+			            [Loans Booked] * [Avg NPS] * (1 + [Delinquency %])
+			    )
+			RETURN
+			SUMX(
+			    S,
+			    RANKX(S, [Score], , DESC, DENSE)
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 477f50f8-b477-42ce-b9ed-257348a1bd40
+
+	measure 'Perf Stress C' = ```
+			
+			SUMX(
+			    GENERATESERIES(1, 12000, 1),
+			    CALCULATE(
+			        SUM('Combine-Data fact_driver_breakdown'[DriverValue]),
+			        FILTER(
+			            ALL('Combine-Data fact_driver_breakdown'),
+			            'Combine-Data fact_driver_breakdown'[ImpactScore] < 0
+			        )
+			    )
+			)
+			
+			```
+		lineageTag: d0f0f6a0-621b-40e8-984a-54f3d738fae3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Value
+		lineageTag: 81521294-6d01-418d-ae0e-09dd99ca485c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Perf_Measures = calculated
+		mode: import
+		source = ```
+				{ "placeholder" }
+				
+				```
+
+	annotation PBI_Id = 38d7798f44bc4bc19e12367a3a42b204
+

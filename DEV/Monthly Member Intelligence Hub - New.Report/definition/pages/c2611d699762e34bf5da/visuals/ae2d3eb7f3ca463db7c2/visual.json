@@ -1,0 +1,185 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "ae2d3eb7f3ca463db7c2",
+  "position": {
+    "x": 1148,
+    "y": 284,
+    "z": 14000,
+    "height": 776,
+    "width": 740,
+    "tabOrder": 14000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Combine-Data fact_driver_breakdown"
+                    }
+                  },
+                  "Property": "Driver"
+                }
+              },
+              "queryRef": "Combine-Data fact_driver_breakdown.Driver",
+              "nativeQueryRef": "Driver"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Combine-Data fact_driver_breakdown"
+                    }
+                  },
+                  "Property": "Avg Driver Value"
+                }
+              },
+              "queryRef": "Combine-Data fact_driver_breakdown.Avg Driver Value",
+              "nativeQueryRef": "Avg Driver Value",
+              "displayName": "Avg driver value"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Combine-Data fact_driver_breakdown"
+                    }
+                  },
+                  "Property": "Driver Impact"
+                }
+              },
+              "queryRef": "Combine-Data fact_driver_breakdown.Driver Impact",
+              "nativeQueryRef": "Driver Impact",
+              "displayName": "Impact score"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Combine-Data fact_driver_breakdown"
+                  }
+                },
+                "Property": "Driver Impact"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0F2A44'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Combine-Data fact_driver_breakdown"
+                        }
+                      },
+                      "Property": "Impact Bar Color"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Combine-Data fact_driver_breakdown.Driver Impact"
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "rowPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Driver detail'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Monthly Member Perf pbix"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "3ab48c52-2bab-43d3-9152-a67813b3f361"
+  }
+}

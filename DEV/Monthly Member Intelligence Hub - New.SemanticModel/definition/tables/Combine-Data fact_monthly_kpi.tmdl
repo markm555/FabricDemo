@@ -1,0 +1,304 @@
+table 'Combine-Data fact_monthly_kpi'
+	lineageTag: 2176b3d8-84e9-4335-911c-b9bada9fee55
+
+	/// Total number of loans booked.
+	measure 'Loans Booked' = SUM('Combine-Data fact_monthly_kpi'[LoansBooked])
+		formatString: #,0
+		displayFolder: KPIs
+		lineageTag: 4343b08b-e730-4734-9ecb-887c9b34db64
+
+	/// Average monthly deposit growth percentage across branches and months in context. Certified KPI.
+	measure 'Avg Deposit Growth %' = AVERAGE('Combine-Data fact_monthly_kpi'[DepositGrowthPct])
+		formatString: 0.0\%
+		displayFolder: KPIs
+		lineageTag: fd8345b8-9b18-4eca-a009-55d2cb1ba4d0
+
+	/// Average Net Promoter Score (member survey, -100 to 100) across branches and months in context. Certified KPI.
+	measure 'Avg NPS' = AVERAGE('Combine-Data fact_monthly_kpi'[NPS])
+		formatString: 0
+		displayFolder: KPIs
+		lineageTag: 9095685f-49b5-49bc-8316-4cbdae53231b
+
+	/// Average loan delinquency rate percentage. Lower is better. Certified KPI.
+	measure 'Delinquency %' = AVERAGE('Combine-Data fact_monthly_kpi'[DelinquencyRatePct])
+		formatString: 0.00\%
+		displayFolder: KPIs
+		lineageTag: b71816de-4248-497a-b7fe-f4b7176bfc59
+
+	/// Average percentage of members actively using online or mobile banking. Certified KPI.
+	measure 'Digital Adoption %' = AVERAGE('Combine-Data fact_monthly_kpi'[DigitalAdoptionPct])
+		formatString: 0.0\%
+		displayFolder: KPIs
+		lineageTag: f4c4064f-3993-4388-9e50-59405bf36868
+
+	/// Target average monthly deposit growth percentage. Placeholder target, confirm with Finance.
+	measure 'Deposit Growth Target' = 5
+		formatString: 0.0\%
+		displayFolder: Targets
+		lineageTag: bbf992cb-caa7-4ad4-8ff1-bf27d1a73363
+
+	/// Target Net Promoter Score. Placeholder target, confirm with Member Experience.
+	measure 'NPS Target' = 80
+		formatString: 0
+		displayFolder: Targets
+		lineageTag: d69c73b7-fc13-4681-9198-ac9b82cd4553
+
+	/// Maximum acceptable loan delinquency rate percentage. Above this is out of tolerance.
+	measure 'Delinquency Threshold' = 5
+		formatString: 0.0\%
+		displayFolder: Targets
+		lineageTag: 15fc7e17-efe8-49cb-afa8-eb51fc5c7c2f
+
+	/// Target percentage of members actively using digital banking. Placeholder target.
+	measure 'Digital Adoption Target' = 70
+		formatString: 0.0\%
+		displayFolder: Targets
+		lineageTag: 19fcb364-a810-4090-b202-319044c60a9a
+
+	/// Status color for deposit growth versus target.
+	measure 'Deposit Growth Status Color' =
+			VAR v = [Avg Deposit Growth %]
+			VAR t = [Deposit Growth Target]
+			RETURN
+			    IF ( ISBLANK ( v ), BLANK (),
+			        SWITCH ( TRUE (), v >= t, "#2E8B57", v >= t * 0.8, "#D98E04", "#C0392B" ) )
+		displayFolder: Formatting
+		lineageTag: a84f6c72-d55d-415e-9ed4-4256471b4803
+
+	/// Status color for NPS versus target.
+	measure 'NPS Status Color' =
+			VAR v = [Avg NPS]
+			VAR t = [NPS Target]
+			RETURN
+			    IF ( ISBLANK ( v ), BLANK (),
+			        SWITCH ( TRUE (), v >= t, "#2E8B57", v >= t * 0.8, "#D98E04", "#C0392B" ) )
+		displayFolder: Formatting
+		lineageTag: 3e673860-0eaf-438b-a4a4-24c3263d786f
+
+	/// Status color for digital adoption versus target.
+	measure 'Digital Adoption Status Color' =
+			VAR v = [Digital Adoption %]
+			VAR t = [Digital Adoption Target]
+			RETURN
+			    IF ( ISBLANK ( v ), BLANK (),
+			        SWITCH ( TRUE (), v >= t, "#2E8B57", v >= t * 0.8, "#D98E04", "#C0392B" ) )
+		displayFolder: Formatting
+		lineageTag: 2e978053-9b6c-4bb3-b841-5739375e40c8
+
+	/// Status color for delinquency; lower is better.
+	measure 'Delinquency Status Color' =
+			VAR v = [Delinquency %]
+			VAR t = [Delinquency Threshold]
+			RETURN
+			    IF ( ISBLANK ( v ), BLANK (),
+			        SWITCH ( TRUE (), v > t, "#C0392B", v > t * 0.8, "#D98E04", "#2E8B57" ) )
+		displayFolder: Formatting
+		lineageTag: 447e0fdd-3702-4797-b3ee-82b37aaea23d
+
+	/// Deposit growth compared with target, as text.
+	measure 'Deposit Growth vs Target' =
+			VAR v = [Avg Deposit Growth %]
+			VAR t = [Deposit Growth Target]
+			VAR d = v - t
+			RETURN
+			    IF ( ISBLANK ( v ), BLANK (),
+			        "Target " & FORMAT ( t, "0.0" ) & "%  |  "
+			            & FORMAT ( ABS ( d ), "0.0" ) & " pts "
+			            & IF ( d >= 0, "above", "below" ) )
+		displayFolder: Formatting
+		lineageTag: 9df257e8-6d49-40b7-bfed-a69e48bbb4a1
+
+	/// NPS compared with target, as text.
+	measure 'NPS vs Target' =
+			VAR v = [Avg NPS]
+			VAR t = [NPS Target]
+			VAR d = v - t
+			RETURN
+			    IF ( ISBLANK ( v ), BLANK (),
+			        "Target " & FORMAT ( t, "0" ) & "  |  "
+			            & FORMAT ( ABS ( d ), "0" ) & " "
+			            & IF ( d >= 0, "above", "below" ) )
+		displayFolder: Formatting
+		lineageTag: f89c691e-e2a7-47e6-8aca-4c9751a8e88b
+
+	/// Delinquency compared with the tolerance threshold, as text.
+	measure 'Delinquency vs Threshold' =
+			VAR v = [Delinquency %]
+			VAR t = [Delinquency Threshold]
+			VAR d = v - t
+			RETURN
+			    IF ( ISBLANK ( v ), BLANK (),
+			        "Target max " & FORMAT ( t, "0.00" ) & "%  |  "
+			            & FORMAT ( ABS ( d ), "0.00" ) & " pts "
+			            & IF ( d >= 0, "above", "below" ) )
+		displayFolder: Formatting
+		lineageTag: 7bb4d202-bc68-4ce1-ab20-1e108b6420f4
+
+	/// Digital adoption compared with target, as text.
+	measure 'Digital Adoption vs Target' =
+			VAR v = [Digital Adoption %]
+			VAR t = [Digital Adoption Target]
+			VAR d = v - t
+			RETURN
+			    IF ( ISBLANK ( v ), BLANK (),
+			        "Target " & FORMAT ( t, "0.0" ) & "%  |  "
+			            & FORMAT ( ABS ( d ), "0.0" ) & " pts "
+			            & IF ( d >= 0, "above", "below" ) )
+		displayFolder: Formatting
+		lineageTag: ae17d728-3f2e-4d3b-95e2-cb95b2c45865
+
+	/// Average NPS across all branches the user is allowed to see, ignoring branch selection.
+	measure 'Enterprise Avg NPS' = CALCULATE ( [Avg NPS], REMOVEFILTERS ( 'Combine-Data dim_branch' ) )
+		formatString: 0
+		displayFolder: KPIs
+		lineageTag: 79224503-00d6-4fa7-b540-aec1b7e0b84a
+
+	/// Delinquency rate across all branches the user is allowed to see, ignoring branch selection.
+	measure 'Enterprise Delinquency %' = CALCULATE ( [Delinquency %], REMOVEFILTERS ( 'Combine-Data dim_branch' ) )
+		formatString: 0.00\%
+		displayFolder: KPIs
+		lineageTag: d6a6e105-0405-464f-9bc8-74200d5b660f
+
+	/// Number of branches with NPS below and delinquency above the enterprise average.
+	measure 'Branches Needing Attention' =
+			VAR entNps = [Enterprise Avg NPS]
+			VAR entDq = [Enterprise Delinquency %]
+			RETURN
+			    COUNTROWS (
+			        FILTER (
+			            VALUES ( 'Combine-Data dim_branch'[SourceBranchKey] ),
+			            [Avg NPS] < entNps && [Delinquency %] > entDq
+			        )
+			    ) + 0
+		formatString: 0
+		displayFolder: KPIs
+		lineageTag: 6f1bb87a-9e93-41d3-9e04-9fb22cb739cc
+
+	/// Latest month of data in the current selection.
+	measure 'Data As Of' = "Data as of " & FORMAT ( MAX ( 'Combine-Data fact_monthly_kpi'[MonthStart] ), "mmmm yyyy" )
+		displayFolder: Labels
+		lineageTag: 971e68de-a996-4745-8fe0-626f98ab3b7d
+
+	/// Header subtitle showing legacy organization selection and data date.
+	measure 'Report Subtitle' =
+			VAR cu = IF ( ISFILTERED ( 'Combine-Data dim_branch'[SourceCU] ), CONCATENATEX ( VALUES ( 'Combine-Data dim_branch'[SourceCU] ), 'Combine-Data dim_branch'[SourceCU], ", " ), "All legacy credit unions" )
+			RETURN cu & "  |  " & [Data As Of] & "  |  Certified semantic model"
+		displayFolder: Labels
+		lineageTag: ac752ccd-231a-408b-b150-579b7097de55
+
+	/// Enterprise NPS comparison text for drill-through.
+	measure 'Branch NPS vs Enterprise' = "Enterprise avg " & FORMAT ( [Enterprise Avg NPS], "0" )
+		displayFolder: Labels
+		lineageTag: 63475af0-43b6-4a43-9d25-803c5db2450d
+
+	/// Enterprise delinquency comparison text for drill-through.
+	measure 'Branch Delinquency vs Enterprise' = "Enterprise avg " & FORMAT ( [Enterprise Delinquency %], "0.00" ) & "%"
+		displayFolder: Labels
+		lineageTag: 28b934ba-e5fd-496e-9804-5092b96ed37b
+
+	column SourceCU
+		dataType: string
+		lineageTag: 479e958b-c26e-406f-a2cf-5fbc6963d8be
+		summarizeBy: none
+		sourceColumn: SourceCU
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceBranchKey
+		dataType: string
+		lineageTag: 6ae18d7a-325e-48f9-bdb5-aee9defd8e86
+		summarizeBy: none
+		sourceColumn: SourceBranchKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthStart
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: dc3dc4d6-7c35-4663-96b3-7ff735209778
+		summarizeBy: none
+		sourceColumn: MonthStart
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column BranchId
+		dataType: string
+		lineageTag: 251e3238-93cf-430e-a118-f55b9fc0eac3
+		summarizeBy: none
+		sourceColumn: BranchId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: b3023cbd-a039-434b-883e-22befcf92553
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoansBooked
+		dataType: int64
+		formatString: 0
+		lineageTag: d10b5646-0e7f-49ae-8d2d-116f561b8b1c
+		summarizeBy: sum
+		sourceColumn: LoansBooked
+
+		annotation SummarizationSetBy = Automatic
+
+	column DepositGrowthPct
+		dataType: double
+		lineageTag: 5dc3e0c3-b503-4536-9ae6-38a8906c239f
+		summarizeBy: sum
+		sourceColumn: DepositGrowthPct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column NPS
+		dataType: double
+		lineageTag: cdaf675d-9c16-4aa5-840c-429cad9f66eb
+		summarizeBy: sum
+		sourceColumn: NPS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DelinquencyRatePct
+		dataType: double
+		lineageTag: d64fb355-95f6-4edc-a213-f6fe27f0c066
+		summarizeBy: sum
+		sourceColumn: DelinquencyRatePct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DigitalAdoptionPct
+		dataType: double
+		lineageTag: 70dece0d-7427-4957-8761-5e84783f83c6
+		summarizeBy: sum
+		sourceColumn: DigitalAdoptionPct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Combine-Data fact_monthly_kpi' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("7zjehgs3vbpe5chwrm3iya6iri-s23mohu63uburco6hv7o4vn7pa.datawarehouse.fabric.microsoft.com"),
+				    #"Combined-Data" = Source{[Name="Combined-Data"]}[Data],
+				    #"Combine-Data_fact_monthly_kpi" = #"Combined-Data"{[Schema="Combine-Data",Item="fact_monthly_kpi"]}[Data]
+				in
+				    #"Combine-Data_fact_monthly_kpi"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,177 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "48b0c51a16154e7b8981",
+  "position": {
+    "x": 1148,
+    "y": 770,
+    "z": 20000,
+    "height": 290,
+    "width": 740,
+    "tabOrder": 20000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Combine-Data glossary_kpi_definitions"
+                    }
+                  },
+                  "Property": "KPI"
+                }
+              },
+              "queryRef": "Combine-Data glossary_kpi_definitions.KPI",
+              "nativeQueryRef": "KPI"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Combine-Data glossary_kpi_definitions"
+                    }
+                  },
+                  "Property": "Definition"
+                }
+              },
+              "queryRef": "Combine-Data glossary_kpi_definitions.Definition",
+              "nativeQueryRef": "Definition"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Combine-Data glossary_kpi_definitions"
+                    }
+                  },
+                  "Property": "Owner"
+                }
+              },
+              "queryRef": "Combine-Data glossary_kpi_definitions.Owner",
+              "nativeQueryRef": "Owner"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0F2A44'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "wordWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": []
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Governed KPI definitions (business glossary)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "c51ebd403de3dc484c16",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Combine-Data glossary_kpi_definitions"
+              }
+            },
+            "Property": "KPI"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "a12c9315e4a0247670d0",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Combine-Data glossary_kpi_definitions"
+              }
+            },
+            "Property": "Definition"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "463c9b99243c2da4b1d3",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Combine-Data glossary_kpi_definitions"
+              }
+            },
+            "Property": "Owner"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

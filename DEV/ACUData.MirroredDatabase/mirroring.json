@@ -1,0 +1,23 @@
+{
+  "properties": {
+    "source": {
+      "type": "SqlServer2025",
+      "typeProperties": {
+        "connection": "d259fc41-ce7c-4ab9-a754-7ad4e22aebc8",
+        "landingZone": {
+          "type": "MountedRelationalDatabase",
+          "typeProperties": {}
+        }
+      }
+    },
+    "target": {
+      "type": "MountedRelationalDatabase",
+      "typeProperties": {
+        "defaultSchema": "dbo",
+        "format": "Delta",
+        "retentionInDays": 1,
+        "enableDeltaChangeDataFeed": false
+      }
+    }
+  }
+}

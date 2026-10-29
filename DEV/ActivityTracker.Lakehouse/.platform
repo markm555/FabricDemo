@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Lakehouse",
+    "displayName": "ActivityTracker"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "bd0bb0e4-6fbd-4bb2-b458-4b8b9ca3281d"
+  }
+}

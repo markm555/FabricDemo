@@ -1,0 +1,1202 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "eafbb8621d0950ea0f3b",
+  "position": {
+    "x": 994.20049710024853,
+    "y": 71.58243579121789,
+    "z": 9,
+    "height": 213.15658657829329,
+    "width": 300.64623032311516,
+    "tabOrder": 7
+  },
+  "visual": {
+    "visualType": "pieChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Combine-Data dim_branch"
+                    }
+                  },
+                  "Property": "BranchName"
+                }
+              },
+              "queryRef": "Combine-Data dim_branch.BranchName",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Combine-Data dim_branch"
+                    }
+                  },
+                  "Property": "Stress Calc 1"
+                }
+              },
+              "queryRef": "Combine-Data dim_branch.Stress Calc 1"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Combine-Data dim_branch"
+                  }
+                },
+                "Property": "Stress Calc 1"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "visualContainerObjects": {
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#A6ADC6'"
+                    }
+                  }
+                }
+              }
+            },
+            "preset": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Custom'"
+                }
+              }
+            },
+            "shadowSpread": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
+                }
+              }
+            },
+            "shadowBlur": {
+              "expr": {
+                "Literal": {
+                  "Value": "5L"
+                }
+              }
+            },
+            "angle": {
+              "expr": {
+                "Literal": {
+                  "Value": "90L"
+                }
+              }
+            },
+            "shadowDistance": {
+              "expr": {
+                "Literal": {
+                  "Value": "4L"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "85L"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#E0E0E0'"
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "4L"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Stress Calc 1 by BranchName'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "2720df4a09e5d14120d6",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Combine-Data dim_branch"
+              }
+            },
+            "Property": "BranchName"
+          }
+        },
+        "type": "TopN",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "b",
+              "Entity": "Combine-Data dim_branch",
+              "Type": 0
+            },
+            {
+              "Name": "m",
+              "Entity": "Combine-Data dim_month",
+              "Type": 0
+            },
+            {
+              "Name": "c",
+              "Entity": "Combine-Data dim_branch",
+              "Type": 0
+            },
+            {
+              "Name": "subquery",
+              "Expression": {
+                "Subquery": {
+                  "Query": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "sc",
+                        "Entity": "Combine-Data dim_branch",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "sc2",
+                        "Entity": "Combine-Data dim_month",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "sc3",
+                        "Entity": "Combine-Data fact_monthly_kpi",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "sc4",
+                        "Entity": "Combine-Data dim_branch",
+                        "Type": 0
+                      }
+                    ],
+                    "Select": [
+                      {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "sc"
+                            }
+                          },
+                          "Property": "BranchName"
+                        },
+                        "Name": "sc_BranchName"
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Exists": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "sc3"
+                              }
+                            }
+                          }
+                        },
+                        "Target": [
+                          {
+                            "SourceRef": {
+                              "Source": "sc"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "Condition": {
+                          "Exists": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "sc3"
+                              }
+                            }
+                          }
+                        },
+                        "Target": [
+                          {
+                            "SourceRef": {
+                              "Source": "sc2"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "sc"
+                                      }
+                                    },
+                                    "Property": "SourceCU"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "null"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "sc"
+                                      }
+                                    },
+                                    "Property": "SourceCU"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "''"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "sc2"
+                                      }
+                                    },
+                                    "Property": "MonthStart"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "null"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "OrderBy": [
+                      {
+                        "Direction": 2,
+                        "Expression": {
+                          "Measure": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "sc4"
+                              }
+                            },
+                            "Property": "Stress Calc 1"
+                          }
+                        }
+                      }
+                    ],
+                    "Top": 10
+                  }
+                }
+              },
+              "Type": 2
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "b"
+                          }
+                        },
+                        "Property": "BranchName"
+                      }
+                    }
+                  ],
+                  "Table": {
+                    "SourceRef": {
+                      "Source": "subquery"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "restatement": "Top 10 branch name by stress calc 1",
+        "howCreated": "User"
+      },
+      {
+        "name": "b60e0f68a44cf22a1e3a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Combine-Data dim_branch"
+              }
+            },
+            "Property": "SourceCU"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "b",
+              "Entity": "Combine-Data dim_branch",
+              "Type": 0
+            },
+            {
+              "Name": "m",
+              "Entity": "Combine-Data dim_month",
+              "Type": 0
+            },
+            {
+              "Name": "c",
+              "Entity": "Combine-Data dim_branch",
+              "Type": 0
+            },
+            {
+              "Name": "subquery",
+              "Expression": {
+                "Subquery": {
+                  "Query": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "sc",
+                        "Entity": "Combine-Data dim_branch",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "sc2",
+                        "Entity": "Combine-Data dim_month",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "sc3",
+                        "Entity": "Combine-Data fact_monthly_kpi",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "sc4",
+                        "Entity": "Combine-Data dim_branch",
+                        "Type": 0
+                      }
+                    ],
+                    "Select": [
+                      {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "sc"
+                            }
+                          },
+                          "Property": "BranchName"
+                        },
+                        "Name": "sc_BranchName"
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Exists": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "sc3"
+                              }
+                            }
+                          }
+                        },
+                        "Target": [
+                          {
+                            "SourceRef": {
+                              "Source": "sc"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "Condition": {
+                          "Exists": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "sc3"
+                              }
+                            }
+                          }
+                        },
+                        "Target": [
+                          {
+                            "SourceRef": {
+                              "Source": "sc2"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "sc"
+                                      }
+                                    },
+                                    "Property": "SourceCU"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "null"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "sc"
+                                      }
+                                    },
+                                    "Property": "SourceCU"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "''"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "sc2"
+                                      }
+                                    },
+                                    "Property": "MonthStart"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "null"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "OrderBy": [
+                      {
+                        "Direction": 2,
+                        "Expression": {
+                          "Measure": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "sc4"
+                              }
+                            },
+                            "Property": "Stress Calc 1"
+                          }
+                        }
+                      }
+                    ],
+                    "Top": 10
+                  }
+                }
+              },
+              "Type": 2
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "Comparison": {
+                      "ComparisonKind": 0,
+                      "Left": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "b"
+                            }
+                          },
+                          "Property": "SourceCU"
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "null"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "restatement": "Source CU is not null",
+        "howCreated": "User"
+      },
+      {
+        "name": "1ad3d8895b11811240a2",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Combine-Data dim_branch"
+              }
+            },
+            "Property": "SourceCU"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "b",
+              "Entity": "Combine-Data dim_branch",
+              "Type": 0
+            },
+            {
+              "Name": "m",
+              "Entity": "Combine-Data dim_month",
+              "Type": 0
+            },
+            {
+              "Name": "c",
+              "Entity": "Combine-Data dim_branch",
+              "Type": 0
+            },
+            {
+              "Name": "subquery",
+              "Expression": {
+                "Subquery": {
+                  "Query": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "sc",
+                        "Entity": "Combine-Data dim_branch",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "sc2",
+                        "Entity": "Combine-Data dim_month",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "sc3",
+                        "Entity": "Combine-Data fact_monthly_kpi",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "sc4",
+                        "Entity": "Combine-Data dim_branch",
+                        "Type": 0
+                      }
+                    ],
+                    "Select": [
+                      {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "sc"
+                            }
+                          },
+                          "Property": "BranchName"
+                        },
+                        "Name": "sc_BranchName"
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Exists": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "sc3"
+                              }
+                            }
+                          }
+                        },
+                        "Target": [
+                          {
+                            "SourceRef": {
+                              "Source": "sc"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "Condition": {
+                          "Exists": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "sc3"
+                              }
+                            }
+                          }
+                        },
+                        "Target": [
+                          {
+                            "SourceRef": {
+                              "Source": "sc2"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "sc"
+                                      }
+                                    },
+                                    "Property": "SourceCU"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "null"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "sc"
+                                      }
+                                    },
+                                    "Property": "SourceCU"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "''"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "sc2"
+                                      }
+                                    },
+                                    "Property": "MonthStart"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "null"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "OrderBy": [
+                      {
+                        "Direction": 2,
+                        "Expression": {
+                          "Measure": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "sc4"
+                              }
+                            },
+                            "Property": "Stress Calc 1"
+                          }
+                        }
+                      }
+                    ],
+                    "Top": 10
+                  }
+                }
+              },
+              "Type": 2
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "Comparison": {
+                      "ComparisonKind": 0,
+                      "Left": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "b"
+                            }
+                          },
+                          "Property": "SourceCU"
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "''"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "restatement": "Source CU is not \"\"",
+        "howCreated": "User"
+      },
+      {
+        "name": "80268b64351e0096e2b4",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Combine-Data dim_month"
+              }
+            },
+            "Property": "MonthStart"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "b",
+              "Entity": "Combine-Data dim_branch",
+              "Type": 0
+            },
+            {
+              "Name": "m",
+              "Entity": "Combine-Data dim_month",
+              "Type": 0
+            },
+            {
+              "Name": "c",
+              "Entity": "Combine-Data dim_branch",
+              "Type": 0
+            },
+            {
+              "Name": "subquery",
+              "Expression": {
+                "Subquery": {
+                  "Query": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "sc",
+                        "Entity": "Combine-Data dim_branch",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "sc2",
+                        "Entity": "Combine-Data dim_month",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "sc3",
+                        "Entity": "Combine-Data fact_monthly_kpi",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "sc4",
+                        "Entity": "Combine-Data dim_branch",
+                        "Type": 0
+                      }
+                    ],
+                    "Select": [
+                      {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "sc"
+                            }
+                          },
+                          "Property": "BranchName"
+                        },
+                        "Name": "sc_BranchName"
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Exists": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "sc3"
+                              }
+                            }
+                          }
+                        },
+                        "Target": [
+                          {
+                            "SourceRef": {
+                              "Source": "sc"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "Condition": {
+                          "Exists": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "sc3"
+                              }
+                            }
+                          }
+                        },
+                        "Target": [
+                          {
+                            "SourceRef": {
+                              "Source": "sc2"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "sc"
+                                      }
+                                    },
+                                    "Property": "SourceCU"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "null"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "sc"
+                                      }
+                                    },
+                                    "Property": "SourceCU"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "''"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "sc2"
+                                      }
+                                    },
+                                    "Property": "MonthStart"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "null"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "OrderBy": [
+                      {
+                        "Direction": 2,
+                        "Expression": {
+                          "Measure": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "sc4"
+                              }
+                            },
+                            "Property": "Stress Calc 1"
+                          }
+                        }
+                      }
+                    ],
+                    "Top": 10
+                  }
+                }
+              },
+              "Type": 2
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "Comparison": {
+                      "ComparisonKind": 0,
+                      "Left": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "m"
+                            }
+                          },
+                          "Property": "MonthStart"
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "null"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "restatement": "Month start is not null",
+        "howCreated": "User"
+      },
+      {
+        "name": "7b7b7a1b11c5d48aa2fb",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Combine-Data dim_branch"
+              }
+            },
+            "Property": "BranchName"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "c9fb11b96df543817506",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Combine-Data dim_branch"
+              }
+            },
+            "Property": "Stress Calc 1"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  },
+  "howCreated": "Copilot"
+}

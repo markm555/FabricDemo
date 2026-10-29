@@ -1,0 +1,49 @@
+table 'Combine-Data security_user_scope'
+	lineageTag: ecae5412-8208-40bd-8b51-6c21e0ce786f
+
+	column SourceCU
+		dataType: string
+		lineageTag: daf3fb28-aeaf-4b5f-baa3-1e30888213ab
+		summarizeBy: none
+		sourceColumn: SourceCU
+
+		annotation SummarizationSetBy = Automatic
+
+	column UserUPN
+		dataType: string
+		lineageTag: 4b887aa1-fa2d-457d-810d-b974026affba
+		summarizeBy: none
+		sourceColumn: UserUPN
+
+		annotation SummarizationSetBy = Automatic
+
+	column RoleName
+		dataType: string
+		lineageTag: cbe68c97-c46e-4d32-b0be-1fcafd612c65
+		summarizeBy: none
+		sourceColumn: RoleName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: 0fc7739e-23d3-4992-92be-51dd1612a170
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Combine-Data security_user_scope' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("7zjehgs3vbpe5chwrm3iya6iri-s23mohu63uburco6hv7o4vn7pa.datawarehouse.fabric.microsoft.com"),
+				    #"Combined-Data" = Source{[Name="Combined-Data"]}[Data],
+				    #"Combine-Data_security_user_scope" = #"Combined-Data"{[Schema="Combine-Data",Item="security_user_scope"]}[Data]
+				in
+				    #"Combine-Data_security_user_scope"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
